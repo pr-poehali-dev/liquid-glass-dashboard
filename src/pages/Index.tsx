@@ -109,7 +109,15 @@ const Index = () => {
                         <Icon name="AlertCircle" size={14} className="absolute top-2 right-2 text-accent" />
                       )}
                       <div className="text-xs font-semibold text-foreground pr-4 mb-1">{doc.title}</div>
-                      <div className="text-[10px] text-muted-foreground leading-snug">{doc.description}</div>
+                      <div className="text-[10px] text-muted-foreground leading-snug mb-2">{doc.description}</div>
+                      <div className="flex gap-1.5 flex-wrap">
+                        <Badge variant="outline" className="text-[9px] px-1.5 py-0 bg-primary/10 border-primary/30 text-primary">
+                          KPI: {doc.kpi}
+                        </Badge>
+                        <Badge variant="outline" className="text-[9px] px-1.5 py-0 bg-secondary/10 border-secondary/30 text-secondary">
+                          {doc.goal}
+                        </Badge>
+                      </div>
                     </div>
                   </TooltipTrigger>
                   <TooltipContent side="right" className="glass max-w-[250px]">
