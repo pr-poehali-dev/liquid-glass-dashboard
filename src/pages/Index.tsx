@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, ResponsiveContainer, Legend } from 'recharts';
+import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from 'recharts';
 import { useState } from 'react';
 
 const Index = () => {
@@ -13,24 +13,15 @@ const Index = () => {
   const chartTypes = [
     { value: "line", label: "Линейный график", icon: "LineChart" },
     { value: "histogram", label: "Гистограмма", icon: "BarChart2" },
-    { value: "pie", label: "Круговая диаграмма (пирог)", icon: "PieChart" },
+    { value: "pie", label: "Круговая диаграмма", icon: "PieChart" },
     { value: "bar", label: "Столбчатая диаграмма", icon: "BarChart3" },
-    { value: "scatter", label: "Точечная диаграмма (scatter plot)", icon: "Sparkles" },
-    { value: "scatter2", label: "Диаграмма рассеяния", icon: "ScatterChart" },
+    { value: "scatter", label: "Точечная диаграмма", icon: "Sparkles" },
     { value: "area", label: "График с областями", icon: "AreaChart" },
-    { value: "boxplot", label: "Ящик с усами (box-and-whisker)", icon: "Box" },
-    { value: "radar", label: "Радарная диаграмма (паутинка)", icon: "Radar" },
-    { value: "waterfall", label: "Водопадная диаграмма", icon: "Waves" },
-    { value: "sankey", label: "Санки диаграмма (sankey)", icon: "GitBranch" },
-    { value: "treemap", label: "Дерево (tree map)", icon: "TreeDeciduous" },
-    { value: "horizontal", label: "Горизонтальная гистограмма", icon: "AlignHorizontalDistributeCenter" },
-    { value: "map", label: "Картодиаграммы (географические)", icon: "Map" },
-    { value: "bullet", label: "Буллет-чарт (bullet chart)", icon: "Target" },
-    { value: "cartogram", label: "Фигурная карта (cartogram)", icon: "MapPin" },
-    { value: "thermometer", label: "Термометр-график", icon: "Thermometer" },
-    { value: "stream", label: "Стримграф (streamgraph)", icon: "Gauge" },
-    { value: "wordcloud", label: "Облако тегов", icon: "Cloud" }
+    { value: "radar", label: "Радарная диаграмма", icon: "Radar" },
+    { value: "sankey", label: "Санки диаграмма", icon: "GitBranch" },
+    { value: "treemap", label: "Дерево", icon: "TreeDeciduous" }
   ];
+
   const kpiData = [
     { title: "Зарплата", value: "48 250 ₽", change: 3.2, trend: "up" },
     { title: "Численность трудоспособного населения", value: "124 567", change: -0.8, trend: "down" },
@@ -120,12 +111,12 @@ const Index = () => {
 
       <div className="grid grid-cols-12 gap-6">
         <div className="col-span-2">
-          <Card className="glass p-4 rounded-2xl border-white/50 shadow-lg h-[calc(100vh-180px)] overflow-y-auto">
+          <Card className="glass p-4 rounded-2xl border-white/50 shadow-lg sticky top-6">
             <h3 className="text-sm font-semibold mb-4 text-foreground flex items-center gap-2">
               <Icon name="FileText" size={16} />
               Документы
             </h3>
-            <div className="space-y-3">
+            <div className="space-y-3 max-h-[calc(100vh-220px)] overflow-y-auto pr-2">
               {documents.map((doc, index) => (
                 <Tooltip key={index}>
                   <TooltipTrigger asChild>
@@ -133,20 +124,12 @@ const Index = () => {
                       {doc.priority && (
                         <Icon name="AlertCircle" size={14} className="absolute top-2 right-2 text-accent" />
                       )}
-                      <div className="text-xs font-semibold text-foreground pr-4 mb-1">{doc.title}</div>
-                      <div className="text-[10px] text-muted-foreground leading-snug mb-2">{doc.description}</div>
-                      <div className="flex gap-1.5 flex-wrap">
-                        <Badge variant="outline" className="text-[9px] px-1.5 py-0 bg-primary/10 border-primary/30 text-primary">
-                          KPI: {doc.kpi}
-                        </Badge>
-                        <Badge variant="outline" className="text-[9px] px-1.5 py-0 bg-secondary/10 border-secondary/30 text-secondary">
-                          {doc.goal}
-                        </Badge>
-                      </div>
+                      <div className="text-xs font-semibold text-foreground pr-4">{doc.title}</div>
                     </div>
                   </TooltipTrigger>
-                  <TooltipContent side="right" className="glass max-w-[250px]">
+                  <TooltipContent side="right" className="max-w-xs">
                     <div className="space-y-1">
+                      <div className="text-xs font-medium">{doc.description}</div>
                       <div className="text-xs font-semibold">KPI: {doc.kpi}</div>
                       <div className="text-xs text-muted-foreground">Цель: {doc.goal}</div>
                     </div>
@@ -176,6 +159,20 @@ const Index = () => {
                     <Line type="monotone" dataKey="forecast" stroke="#FCD34D" strokeWidth={2} strokeDasharray="5 5" />
                   </LineChart>
                 </ResponsiveContainer>
+                <div className="flex gap-4 mt-2 text-xs">
+                  <div className="flex items-center gap-1">
+                    <div className="w-3 h-3 rounded-full bg-primary"></div>
+                    <span>Розничная торговля</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <div className="w-3 h-3 rounded-full bg-secondary"></div>
+                    <span>Услуги</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <div className="w-3 h-3 rounded-full bg-accent"></div>
+                    <span>Прогноз</span>
+                  </div>
+                </div>
               </div>
               <div>
                 <h3 className="text-sm font-semibold mb-3 text-muted-foreground">Структура рынка</h3>
@@ -217,6 +214,16 @@ const Index = () => {
                     <Bar dataKey="support" fill="#10B981" radius={[8, 8, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
+                <div className="flex gap-4 mt-2 text-xs">
+                  <div className="flex items-center gap-1">
+                    <div className="w-3 h-3 rounded-full bg-primary"></div>
+                    <span>Инвестиции</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <div className="w-3 h-3 rounded-full bg-secondary"></div>
+                    <span>Поддержка</span>
+                  </div>
+                </div>
               </div>
               <div>
                 <h3 className="text-sm font-semibold mb-3 text-muted-foreground">Меры поддержки</h3>
@@ -241,9 +248,9 @@ const Index = () => {
             </div>
           </Card>
 
-          <Card className="glass p-6 rounded-2xl border-white/50 shadow-lg border-2 border-accent/30">
-            <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white font-semibold rounded-xl h-12 text-base shadow-lg">
-              <Icon name="FileEdit" size={20} className="mr-2" />
+          <Card className="glass p-6 rounded-2xl border-white/50 shadow-lg border-2 border-accent/50">
+            <Button className="w-full bg-gradient-to-r from-primary to-secondary text-white rounded-xl py-6 text-lg font-semibold hover:shadow-xl transition-all">
+              <Icon name="FileEdit" size={24} className="mr-2" />
               Составить проект решения
             </Button>
           </Card>
@@ -252,46 +259,57 @@ const Index = () => {
         <div className="col-span-3 space-y-6">
           <Card className="glass p-5 rounded-2xl border-white/50 shadow-lg">
             <h3 className="text-sm font-semibold mb-4 text-foreground flex items-center gap-2">
-              <Icon name="Archive" size={16} />
+              <Icon name="Archive" size={18} />
               Проекты решений
             </h3>
-            <div className="space-y-2">
+            <div className="space-y-3">
               {projects.map((project, index) => (
                 <div key={index} className="p-3 rounded-xl bg-white/60 hover:bg-white/80 cursor-pointer transition-all border border-white/50">
-                  <div className="text-xs font-semibold text-foreground mb-1.5">{project.title}</div>
+                  <div className="text-xs font-semibold text-foreground mb-1">{project.title}</div>
                   <div className="text-[10px] text-muted-foreground leading-snug">{project.description}</div>
                 </div>
               ))}
             </div>
           </Card>
 
-          <Card className="glass p-5 rounded-2xl border-white/50 shadow-lg">
+          <Card className="glass p-5 rounded-2xl border-white/50 shadow-lg border-2 border-accent/30">
             <h3 className="text-sm font-semibold mb-4 text-foreground flex items-center gap-2">
-              <Icon name="BarChart3" size={16} />
+              <Icon name="BarChart3" size={18} />
               Генератор дашбордов
             </h3>
-            <Select value={selectedChart} onValueChange={setSelectedChart}>
-              <SelectTrigger className="w-full bg-white/80 border-accent/50 rounded-xl mb-3 h-10">
-                <SelectValue placeholder="Выберите тип диаграммы" />
-              </SelectTrigger>
-              <SelectContent className="glass max-h-[300px]">
-                {chartTypes.map((chart) => (
-                  <SelectItem key={chart.value} value={chart.value} className="cursor-pointer">
-                    <div className="flex items-center gap-2">
-                      <Icon name={chart.icon} size={14} className="text-primary" />
-                      <span className="text-xs">{chart.label}</span>
-                    </div>
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            <Button 
-              className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white font-medium rounded-xl shadow-sm"
-              disabled={!selectedChart}
-            >
-              <Icon name="Plus" size={16} className="mr-2" />
-              Создать дашборд
-            </Button>
+            <div className="space-y-3">
+              <Select value={selectedChart} onValueChange={setSelectedChart}>
+                <SelectTrigger className="rounded-xl border-white/50">
+                  <SelectValue placeholder="Выберите тип диаграммы" />
+                </SelectTrigger>
+                <SelectContent>
+                  {chartTypes.map((chart) => (
+                    <SelectItem key={chart.value} value={chart.value}>
+                      <div className="flex items-center gap-2">
+                        <Icon name={chart.icon} size={16} />
+                        <span className="text-xs">{chart.label}</span>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              
+              {selectedChart && (
+                <div className="p-3 rounded-xl bg-gradient-to-br from-primary/10 to-secondary/10 border border-accent/30">
+                  <div className="text-xs font-semibold text-foreground mb-2">
+                    Выбрана диаграмма:
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    {chartTypes.find(c => c.value === selectedChart)?.label}
+                  </div>
+                </div>
+              )}
+              
+              <Button className="w-full bg-accent text-white rounded-xl hover:bg-accent/90 transition-all">
+                <Icon name="Plus" size={16} className="mr-2" />
+                Создать дашборд
+              </Button>
+            </div>
           </Card>
         </div>
       </div>
