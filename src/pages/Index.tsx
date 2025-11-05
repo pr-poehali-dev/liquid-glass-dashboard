@@ -46,11 +46,14 @@ const Index = () => {
   const COLORS = ['#0EA5E9', '#10B981', '#FCD34D', '#F59E0B'];
 
   const documents = [
-    { title: "Распоряжение №245", kpi: "Увеличение числа МСП", goal: "Стратегия развития 2024", priority: true },
-    { title: "Постановление №18", kpi: "Рост средней зарплаты", goal: "Социальная политика", priority: false },
-    { title: "Приказ №89", kpi: "Поддержка самозанятых", goal: "Развитие предпринимательства", priority: true },
-    { title: "Решение №102", kpi: "Инвестиционные проекты", goal: "Экономический рост", priority: false },
-    { title: "Регламент №34", kpi: "Развитие розничной торговли", goal: "Потребительский рынок", priority: false }
+    { title: "Распоряжение №245", description: "О выделении субсидий малому и среднему бизнесу в размере 12,5 млн рублей", kpi: "Увеличение числа МСП", goal: "Стратегия развития 2024", priority: true },
+    { title: "Постановление №18", description: "Об утверждении минимального размера оплаты труда в муниципальных учреждениях", kpi: "Рост средней зарплаты", goal: "Социальная политика", priority: false },
+    { title: "Приказ №89", description: "О мерах налоговой поддержки самозанятых граждан на территории муниципалитета", kpi: "Поддержка самозанятых", goal: "Развитие предпринимательства", priority: true },
+    { title: "Решение №102", description: "Об инвестиционной программе развития инфраструктуры на 2024-2026 годы", kpi: "Инвестиционные проекты", goal: "Экономический рост", priority: false },
+    { title: "Регламент №34", description: "О предоставлении грантов на развитие розничной торговли в сельской местности", kpi: "Развитие розничной торговли", goal: "Потребительский рынок", priority: false },
+    { title: "Распоряжение №156", description: "О выделении средств на модернизацию рыночной инфраструктуры в размере 8,3 млн", kpi: "Развитие потребительского рынка", goal: "Инфраструктура", priority: false },
+    { title: "Постановление №72", description: "Об установлении льготной ставки по налогу на имущество для промышленных предприятий", kpi: "Промышленное развитие", goal: "Налоговая политика", priority: true },
+    { title: "Приказ №201", description: "О создании муниципального фонда поддержки стартапов с капиталом 15 млн рублей", kpi: "Инновационное развитие", goal: "Поддержка стартапов", priority: true }
   ];
 
   const projects = [
@@ -92,7 +95,7 @@ const Index = () => {
 
       <div className="grid grid-cols-12 gap-6">
         <div className="col-span-2">
-          <Card className="glass p-4 rounded-2xl border-white/50 shadow-lg h-[calc(100vh-200px)] overflow-y-auto">
+          <Card className="glass p-4 rounded-2xl border-white/50 shadow-lg h-[calc(100vh-180px)] overflow-y-auto">
             <h3 className="text-sm font-semibold mb-4 text-foreground flex items-center gap-2">
               <Icon name="FileText" size={16} />
               Документы
@@ -105,7 +108,8 @@ const Index = () => {
                       {doc.priority && (
                         <Icon name="AlertCircle" size={14} className="absolute top-2 right-2 text-accent" />
                       )}
-                      <div className="text-xs font-medium text-foreground pr-4">{doc.title}</div>
+                      <div className="text-xs font-semibold text-foreground pr-4 mb-1">{doc.title}</div>
+                      <div className="text-[10px] text-muted-foreground leading-snug">{doc.description}</div>
                     </div>
                   </TooltipTrigger>
                   <TooltipContent side="right" className="glass max-w-[250px]">
