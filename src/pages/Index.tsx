@@ -3,9 +3,34 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, ResponsiveContainer, Legend } from 'recharts';
+import { useState } from 'react';
 
 const Index = () => {
+  const [selectedChart, setSelectedChart] = useState<string>("");
+
+  const chartTypes = [
+    { value: "line", label: "Линейный график", icon: "LineChart" },
+    { value: "histogram", label: "Гистограмма", icon: "BarChart2" },
+    { value: "pie", label: "Круговая диаграмма (пирог)", icon: "PieChart" },
+    { value: "bar", label: "Столбчатая диаграмма", icon: "BarChart3" },
+    { value: "scatter", label: "Точечная диаграмма (scatter plot)", icon: "Sparkles" },
+    { value: "scatter2", label: "Диаграмма рассеяния", icon: "ScatterChart" },
+    { value: "area", label: "График с областями", icon: "AreaChart" },
+    { value: "boxplot", label: "Ящик с усами (box-and-whisker)", icon: "Box" },
+    { value: "radar", label: "Радарная диаграмма (паутинка)", icon: "Radar" },
+    { value: "waterfall", label: "Водопадная диаграмма", icon: "Waves" },
+    { value: "sankey", label: "Санки диаграмма (sankey)", icon: "GitBranch" },
+    { value: "treemap", label: "Дерево (tree map)", icon: "TreeDeciduous" },
+    { value: "horizontal", label: "Горизонтальная гистограмма", icon: "AlignHorizontalDistributeCenter" },
+    { value: "map", label: "Картодиаграммы (географические)", icon: "Map" },
+    { value: "bullet", label: "Буллет-чарт (bullet chart)", icon: "Target" },
+    { value: "cartogram", label: "Фигурная карта (cartogram)", icon: "MapPin" },
+    { value: "thermometer", label: "Термометр-график", icon: "Thermometer" },
+    { value: "stream", label: "Стримграф (streamgraph)", icon: "Gauge" },
+    { value: "wordcloud", label: "Облако тегов", icon: "Cloud" }
+  ];
   const kpiData = [
     { title: "Зарплата", value: "48 250 ₽", change: 3.2, trend: "up" },
     { title: "Численность трудоспособного населения", value: "124 567", change: -0.8, trend: "down" },
@@ -229,7 +254,25 @@ const Index = () => {
               <Icon name="BarChart3" size={16} />
               Генератор дашбордов
             </h3>
-            <Button className="w-full bg-white/80 hover:bg-white text-foreground font-medium rounded-xl border border-accent/50 shadow-sm">
+            <Select value={selectedChart} onValueChange={setSelectedChart}>
+              <SelectTrigger className="w-full bg-white/80 border-accent/50 rounded-xl mb-3 h-10">
+                <SelectValue placeholder="Выберите тип диаграммы" />
+              </SelectTrigger>
+              <SelectContent className="glass max-h-[300px]">
+                {chartTypes.map((chart) => (
+                  <SelectItem key={chart.value} value={chart.value} className="cursor-pointer">
+                    <div className="flex items-center gap-2">
+                      <Icon name={chart.icon} size={14} className="text-primary" />
+                      <span className="text-xs">{chart.label}</span>
+                    </div>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <Button 
+              className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white font-medium rounded-xl shadow-sm"
+              disabled={!selectedChart}
+            >
               <Icon name="Plus" size={16} className="mr-2" />
               Создать дашборд
             </Button>
