@@ -80,23 +80,20 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-sky-50 via-emerald-50 to-cyan-50 p-6">
-      <div className="flex items-start justify-between mb-6">
-        <div className="flex-1">
-          <div className="flex gap-3 overflow-x-auto pb-4">
-            {kpiData.map((kpi, index) => (
-              <Card key={index} className="glass min-w-[220px] p-4 rounded-2xl border-white/50 shadow-lg">
-                <div className="text-xs text-muted-foreground mb-1 font-medium">{kpi.title}</div>
-                <div className="text-2xl font-bold text-foreground mb-2">{kpi.value}</div>
-                <div className={`flex items-center gap-1 text-sm font-semibold ${kpi.trend === 'up' ? 'text-secondary' : 'text-destructive'}`}>
-                  <Icon name={kpi.trend === 'up' ? 'TrendingUp' : 'TrendingDown'} size={16} />
-                  <span>{Math.abs(kpi.change)}%</span>
-                </div>
-              </Card>
-            ))}
-          </div>
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-4">
+          <img 
+            src="https://cdn.poehali.dev/files/fd835022-e18e-4dc3-b60a-cfbf2dff8418.png" 
+            alt="Герб Одинцовского ГО" 
+            className="w-16 h-16 object-contain"
+          />
+          <h1 className="text-2xl font-bold text-foreground">
+            ИИ ПАНЕЛЬ УПРАВЛЕНИЯ ИНВЕСТИЦИЯМИ <br />
+            <span className="text-lg">ОДИНЦОВСКОГО ГОРОДСКОГО ОКРУГА</span>
+          </h1>
         </div>
-
-        <Card className="glass ml-6 p-4 rounded-2xl border-white/50 shadow-lg min-w-[280px]">
+        
+        <Card className="glass p-4 rounded-2xl border-white/50 shadow-lg min-w-[280px]">
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold text-lg">
               ЗГ
@@ -107,6 +104,21 @@ const Index = () => {
             </div>
           </div>
         </Card>
+      </div>
+
+      <div className="mb-6">
+        <div className="flex gap-3 overflow-x-auto pb-4">
+          {kpiData.map((kpi, index) => (
+            <Card key={index} className="glass min-w-[220px] p-4 rounded-2xl border-white/50 shadow-lg">
+              <div className="text-xs text-muted-foreground mb-1 font-medium">{kpi.title}</div>
+              <div className="text-2xl font-bold text-foreground mb-2">{kpi.value}</div>
+              <div className={`flex items-center gap-1 text-sm font-semibold ${kpi.trend === 'up' ? 'text-secondary' : 'text-destructive'}`}>
+                <Icon name={kpi.trend === 'up' ? 'TrendingUp' : 'TrendingDown'} size={16} />
+                <span>{Math.abs(kpi.change)}%</span>
+              </div>
+            </Card>
+          ))}
+        </div>
       </div>
 
       <div className="grid grid-cols-12 gap-6">
