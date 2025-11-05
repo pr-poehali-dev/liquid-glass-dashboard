@@ -106,8 +106,8 @@ const Index = () => {
         </Card>
       </div>
 
-      <div className="mb-6">
-        <div className="flex gap-3 overflow-x-auto pb-4">
+      <div className="mb-6 flex gap-4">
+        <div className="flex-1 flex gap-3 overflow-x-auto pb-4">
           {kpiData.map((kpi, index) => (
             <Card key={index} className="glass min-w-[220px] p-4 rounded-2xl border-white/50 shadow-lg">
               <div className="text-xs text-muted-foreground mb-1 font-medium">{kpi.title}</div>
@@ -119,6 +119,17 @@ const Index = () => {
             </Card>
           ))}
         </div>
+        
+        <Card className="glass min-w-[240px] p-4 rounded-2xl border-white/50 shadow-lg border-2 border-accent/50 hover:border-accent transition-all cursor-pointer">
+          <div className="flex flex-col items-center justify-center h-full gap-2">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+              <Icon name="Plus" size={24} className="text-white" />
+            </div>
+            <div className="text-xs font-semibold text-center text-foreground">
+              Подключить источник<br />поступления данных
+            </div>
+          </div>
+        </Card>
       </div>
 
       <div className="grid grid-cols-12 gap-6">
