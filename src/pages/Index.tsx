@@ -69,7 +69,11 @@ const Index = () => {
     { title: "Регламент №34", description: "О предоставлении грантов на развитие розничной торговли в сельской местности", kpi: "Развитие розничной торговли", goal: "Потребительский рынок", priority: false },
     { title: "Распоряжение №156", description: "О выделении средств на модернизацию рыночной инфраструктуры в размере 8,3 млн", kpi: "Развитие потребительского рынка", goal: "Инфраструктура", priority: false },
     { title: "Постановление №72", description: "Об установлении льготной ставки по налогу на имущество для промышленных предприятий", kpi: "Промышленное развитие", goal: "Налоговая политика", priority: true },
-    { title: "Приказ №201", description: "О создании муниципального фонда поддержки стартапов с капиталом 15 млн рублей", kpi: "Инновационное развитие", goal: "Поддержка стартапов", priority: true }
+    { title: "Приказ №201", description: "О создании муниципального фонда поддержки стартапов с капиталом 15 млн рублей", kpi: "Инновационное развитие", goal: "Поддержка стартапов", priority: true },
+    { title: "Распоряжение №312", description: "О софинансировании программ модернизации торговых объектов на сумму 6,8 млн", kpi: "Модернизация торговли", goal: "Инфраструктура потребрынка", priority: false },
+    { title: "Постановление №145", description: "Об увеличении бюджетных ассигнований на поддержку экспорта на 4,2 млн рублей", kpi: "Рост экспорта", goal: "Внешнеэкономическая деятельность", priority: true },
+    { title: "Приказ №267", description: "О предоставлении налоговых каникул новым производственным предприятиям", kpi: "Привлечение инвестиций", goal: "Промышленное развитие", priority: false },
+    { title: "Решение №88", description: "О выделении 9,5 млн рублей на создание индустриального парка", kpi: "Развитие инфраструктуры", goal: "Инвестиционная привлекательность", priority: true }
   ];
 
   const projects = [
@@ -134,12 +138,12 @@ const Index = () => {
 
       <div className="grid grid-cols-12 gap-6">
         <div className="col-span-2">
-          <Card className="glass p-4 rounded-2xl border-white/50 shadow-lg sticky top-6">
+          <Card className="glass p-4 rounded-2xl border-white/50 shadow-lg h-[calc(100vh-200px)] flex flex-col">
             <h3 className="text-sm font-semibold mb-4 text-foreground flex items-center gap-2">
               <Icon name="FileText" size={16} />
               Документы
             </h3>
-            <div className="space-y-3 max-h-[calc(100vh-220px)] overflow-y-auto pr-2">
+            <div className="space-y-3 overflow-y-auto pr-2 flex-1">
               {documents.map((doc, index) => (
                 <Tooltip key={index}>
                   <TooltipTrigger asChild>
@@ -147,7 +151,16 @@ const Index = () => {
                       {doc.priority && (
                         <Icon name="AlertCircle" size={14} className="absolute top-2 right-2 text-accent" />
                       )}
-                      <div className="text-xs font-semibold text-foreground pr-4">{doc.title}</div>
+                      <div className="text-xs font-semibold text-foreground pr-4 mb-2">{doc.title}</div>
+                      <div className="text-[10px] text-muted-foreground leading-snug mb-2">{doc.description}</div>
+                      <div className="flex gap-1.5 flex-wrap">
+                        <Badge variant="outline" className="text-[9px] px-1.5 py-0 bg-primary/10 border-primary/30 text-primary">
+                          KPI: {doc.kpi}
+                        </Badge>
+                        <Badge variant="outline" className="text-[9px] px-1.5 py-0 bg-secondary/10 border-secondary/30 text-secondary">
+                          {doc.goal}
+                        </Badge>
+                      </div>
                     </div>
                   </TooltipTrigger>
                   <TooltipContent side="right" className="max-w-xs">
