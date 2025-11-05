@@ -91,9 +91,9 @@ const Index = () => {
             alt="Герб Одинцовского ГО" 
             className="w-16 h-16 object-contain"
           />
-          <h1 className="text-2xl font-bold text-foreground">
+          <h1 className="font-bold text-foreground text-5xl">
             ИИ ПАНЕЛЬ УПРАВЛЕНИЯ ИНВЕСТИЦИЯМИ <br />
-            <span className="text-lg">ОДИНЦОВСКОГО ГОРОДСКОГО ОКРУГА</span>
+            <span className="text-3xl">ОДИНЦОВСКОГО ГОРОДСКОГО ОКРУГА</span>
           </h1>
         </div>
         
