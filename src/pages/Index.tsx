@@ -181,7 +181,15 @@ const Index = () => {
                 <h3 className="text-sm font-semibold mb-3 text-muted-foreground">Структура рынка</h3>
                 <ResponsiveContainer width="100%" height={200}>
                   <PieChart>
-                    <Pie data={pieData1} cx="50%" cy="50%" outerRadius={70} dataKey="value" label>
+                    <Pie 
+                      data={pieData1} 
+                      cx="50%" 
+                      cy="50%" 
+                      outerRadius={70} 
+                      dataKey="value" 
+                      label={({ name, value }) => `${name}: ${value}%`}
+                      labelLine={{ stroke: '#94a3b8', strokeWidth: 1 }}
+                    >
                       {pieData1.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                       ))}
@@ -214,7 +222,15 @@ const Index = () => {
                 <h3 className="text-sm font-semibold mb-3 text-muted-foreground">Меры поддержки</h3>
                 <ResponsiveContainer width="100%" height={200}>
                   <PieChart>
-                    <Pie data={pieData2} cx="50%" cy="50%" outerRadius={70} dataKey="value" label>
+                    <Pie 
+                      data={pieData2} 
+                      cx="50%" 
+                      cy="50%" 
+                      outerRadius={70} 
+                      dataKey="value" 
+                      label={({ name, value }) => `${name}: ${value}%`}
+                      labelLine={{ stroke: '#94a3b8', strokeWidth: 1 }}
+                    >
                       {pieData2.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                       ))}
