@@ -57,9 +57,9 @@ const Index = () => {
   ];
 
   const projects = [
-    { title: "Проект решения от 15.10.2024", status: "Утверждён" },
-    { title: "Проект решения от 08.10.2024", status: "На согласовании" },
-    { title: "Проект решения от 01.10.2024", status: "Утверждён" }
+    { title: "Проект решения от 15.10.2024", description: "На основе сопоставления обращений и статей расходов в сфере ЖКХ" },
+    { title: "Проект решения от 08.10.2024", description: "По результатам анализа эффективности мер поддержки МСП" },
+    { title: "Проект решения от 01.10.2024", description: "На базе прогноза инвестиционной активности в муниципалитете" }
   ];
 
   return (
@@ -217,10 +217,8 @@ const Index = () => {
             <div className="space-y-2">
               {projects.map((project, index) => (
                 <div key={index} className="p-3 rounded-xl bg-white/60 hover:bg-white/80 cursor-pointer transition-all border border-white/50">
-                  <div className="text-xs font-medium text-foreground mb-1">{project.title}</div>
-                  <Badge variant={project.status === "Утверждён" ? "default" : "secondary"} className="text-[10px] px-2 py-0.5">
-                    {project.status}
-                  </Badge>
+                  <div className="text-xs font-semibold text-foreground mb-1.5">{project.title}</div>
+                  <div className="text-[10px] text-muted-foreground leading-snug">{project.description}</div>
                 </div>
               ))}
             </div>
